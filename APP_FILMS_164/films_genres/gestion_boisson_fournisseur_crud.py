@@ -33,7 +33,7 @@ def films_genres_afficher(id_film_sel):
         try:
             with DBconnection() as mc_afficher:
                 strsql_genres_films_afficher_data = """SELECT id_boisson, nom_boisson, type_boisson, prix_vente_boisson, cover_link_boisson, code_barre_boisson,
-                                                            GROUP_CONCAT(nom_fournisseur) as Fournisseur FROM t_boisson_acheter_fournisseur
+                                                            GROUP_CONCAT(nom_fournisseur) as BoissonFournisseur FROM t_boisson_acheter_fournisseur
                                                             RIGHT JOIN t_boisson ON t_boisson.id_boisson = t_boisson_acheter_fournisseur.fk_boisson
                                                             LEFT JOIN t_fournisseur ON t_fournisseur.id_fournisseur = t_boisson_acheter_fournisseur.fk_fournisseur
                                                             GROUP BY id_boisson"""
@@ -276,7 +276,7 @@ def genres_films_afficher_data(valeur_id_film_selected_dict):
     print("valeur_id_film_selected_dict...", valeur_id_film_selected_dict)
     try:
 
-        strsql_film_selected = """SELECT id_boisson, nom_boisson, type_boisson, prix_vente_boisson, cover_link_boisson, code_barre_boisson, GROUP_CONCAT(id_fournisseur) as Fournisseur FROM t_boisson_acheter_fournisseur
+        strsql_film_selected = """SELECT id_boisson, nom_boisson, type_boisson, prix_vente_boisson, cover_link_boisson, code_barre_boisson, GROUP_CONCAT(id_fournisseur) as BoissonFournisseur FROM t_boisson_acheter_fournisseur
                                         INNER JOIN t_boisson ON t_boisson.id_boisson = t_boisson_acheter_fournisseur.fk_boisson
                                         INNER JOIN t_fournisseur ON t_fournisseur.id_fournisseur = t_boisson_acheter_fournisseur.fk_fournisseur
                                         WHERE id_boisson = %(value_id_film_selected)s"""
